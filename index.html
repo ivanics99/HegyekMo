@@ -2,14 +2,32 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="proba.js"></script>
     <title>hegyekMo</title>
 </head>
-<body>
-    
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl">
+<p>3. feladat: Hegycsúcsok száma: {{darabSzam}} darab</p>
+<p>4. feladat: Hegycsúcsok átlagmagassága: {{atlagMagassag}} méter</p>
+<p>5. feladat: A legmagasabb hegycsúcs adatai: {{}}</p>
+<ul style="list-style-type: none;">
+        <li>Név: {{legmagasabbHegyNev}}</li>
+        <li>Hegység: {{legmagasabbHegyseg}}</li>
+        <li>Magasság: {{legmagasabbHegyMagassag}} méter</li>
+</ul>
+</div>
+
+<div ng-controller="myControl">
+<p>6. feladat: Kérek egy magasságot: <input type="number" min="500" id="magassag">
+<button type="button" ng-click="leker()">Lekérdezés</button>
+</p>
+<p>{{kiir}}</p>
+
+</div>
 
 
 
-
-    
 </body>
 </html>
