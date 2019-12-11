@@ -29,15 +29,50 @@ app.controller('myCtrl', ['$scope', '$http', function($scope, $http) {
             }
             $scope.darabSzam = hegyek.length;
             $scope.atlagMagassag = $scope.szummaMagassag / $scope.darabSzam;
+            
+            //lab
+            let magasabbbMint3000Lab = 0;
+            for (let j = 0; j < hegyek.length; j++) {
+        
+                let labMagassag = Number(hegyek[j].magassag) * 3.280839895;
+                if (labMagassag >= 3000) {
+                    magasabbbMint3000Lab++;
+                }
+            }
+            $scope.lab = magasabbbMint3000Lab;
+            //lab vege
+
+            //hegyseg darab
+            $scope.hegyStatisztika = [];
+            $scope.hegyStatisztika.push({
+                'nev' : hegyek[0].hegy,
+                'elemszam' : 1
+            });
+
+            for (let k = 1; k < hegyek.length; k++) {
+                let vanE = false;
+                for (let m = 0; m < $scope.hegyStatisztika.length; m++) {
+                    if (hegyek[k].hegyseg == $scope.hegyStatisztika[m].nev){
+                        $scope.hegyStatisztika[m].elemszam++;
+                        vanE = true;
+                    }
+                }
+                if (!vanE) {
+                    $scope.hegyStatisztika.push({
+                        'nev' : hegyek[k].hegyseg, 
+                        'elemszam' : 1
+                    });
+                }
+            }
         });
 }]);
 
 app.controller('myControl', ['$scope', function($scope) {
-    $scope.leker() = function() {
-        let magassag = document.getElementById('magassag').nodeValue;
+    $scope.leker = function() {
+        let magassag = document.getElementById('magassag').value;
         let vanE = false;
         for (let i = 0; i < hegyek.length; i++) {
-            if (hegyek.hegy == 'Börzsöny' && Number(hegyek[i].magassag) > magassag) {
+            if (hegyek[i].hegy == 'Börzsöny' && Number(hegyek[i].magassag) > magassag) {
                 vanE = true;
                 break;
             }
